@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Pong</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Add styles for the canvas element here */
+        #gameCanvas {
+            /* Add your styles here */
+        }
+    </style>
+</head>
+<body>
+    <div id="startMenu">
+        <h1>Hockey Pong</h1>
+        <p>Select Control Mode:</p>
+        <button id="mouseModeButton">Mouse / Trackpad</button>
+        <button id="keyboardModeButton">Arrow Keys</button>
+    </div>
+
+    <div id="gameOverMenu" style="display: none;">
+        <h2 id="gameOverMessage">Game Over!</h2>
+        <button id="returnToMenuButton">Return to Main Menu</button>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>

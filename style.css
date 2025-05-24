@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: midnightblue; /* Dark blue background for when menus are visible */
+}
+
+#startMenu {
+    position: absolute; /* Added for centering consistency */
+    top: 50%;           /* Added for centering consistency */
+    left: 50%;          /* Added for centering consistency */
+    transform: translate(-50%, -50%); /* Added for centering consistency */
+    background-color: #f0f0f0; /* Match gameOverMenu background */
+    text-align: center;
+    padding: 30px; /* Increased padding for a 'boxier' feel, matches gameOverMenu */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Match gameOverMenu shadow */
+    z-index: 1000; /* Ensure it's above other elements if needed, below gameOverMenu */
+}
+
+#startMenu h1,
+#startMenu p {
+    margin-bottom: 20px;
+    color: #333; /* Ensure text color is set */
+}
+
+#startMenu button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#startMenu button:hover {
+    background-color: #45a049;
+}
+
+/* Styles for the Game Over Menu - to match Start Menu */
+#gameOverMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    padding: 30px; /* Increased padding for a slightly larger box */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Slightly more pronounced shadow */
+    text-align: center;
+    z-index: 1001; /* Ensure it's above the canvas if canvas isn't hidden */
+    /* display: none; /* Initially hidden - managed by JS, but good for clarity */
+}
+
+#gameOverMenu h2 {
+    margin-bottom: 20px;
+    font-size: 28px; /* Larger title for game over */
+    color: #333;
+}
+
+#gameOverMenu button {
+    padding: 12px 25px; /* Slightly larger button */
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; /* Different color for distinction */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#gameOverMenu button:hover {
+    background-color: #0056b3;
+}
+
+canvas {
+    display: block; /* Removes extra space below canvas if it's inline */
+}
+
+#gameCanvas {
+    display: none; /* Initially hidden */
+    border: 10px solid black;
+    border-radius: 15px;
+    box-sizing: border-box; /* Important: includes border and padding in the element's total width and height */
+}
