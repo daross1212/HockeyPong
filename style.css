@@ -1,11 +1,15 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #4c9ae7; /* Dark blue-grey background */
+    color: #ecf0f1; /* Light text color for contrast */
     margin: 0;
-    background-color: midnightblue; /* Dark blue background for when menus are visible */
+    padding: 20px; /* Add some padding around the game area */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center game container horizontally */
+    justify-content: center; /* Center game container vertically (optional, if you want it centered on the page) */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    box-sizing: border-box;
 }
 
 #startMenu {
@@ -19,6 +23,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.3); /* Match gameOverMenu shadow */
     z-index: 1000; /* Ensure it's above other elements if needed, below gameOverMenu */
+    display: flex;             /* Make it a flex container */
+    flex-direction: column;    /* Stack children vertically */
+    align-items: center;       /* Center children horizontally */
 }
 
 #startMenu h1,
@@ -41,6 +48,15 @@ body {
 
 #startMenu button:hover {
     background-color: #45a049;
+}
+
+#startMenu .name-input-container {
+    display: flex;
+    flex-direction: column; /* Stacks the label above the input field */
+    align-items: center;   /* Centers items horizontally within this flex container */
+    margin-top: 15px;     
+     /* Adds some space above the name input area */
+    margin-bottom: 20px;   /* Adds some space below the name input area */
 }
 
 /* Styles for the Game Over Menu - to match Start Menu */
@@ -79,8 +95,72 @@ body {
     background-color: #0056b3;
 }
 
+#gameContainer {
+    display: flex;
+    flex-direction: column; /* Stack scoreboard above canvas */
+    align-items: center; /* Center scoreboard and canvas within this container */
+}
+
+#scoreBoard {
+    font-family: 'Press Start 2P', cursive; /* Match game font */
+    color: white;
+    text-shadow: 2px 2px #000000;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 8px;
+    position: absolute;
+    top: 10px; /* Position from the top of the gameContainer */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto; /* Auto width based on content */
+    min-width: 300px; /* Minimum width to ensure it looks decent */
+    z-index: 10; /* Ensure it's above the canvas */
+    flex-direction: row; /* Align items horizontally */
+    justify-content: space-around; /* Distribute space around items */
+    align-items: center;
+    display: none; /* Initially hidden, shown by JS */
+}
+
+#scoreBoard .score-text { /* Player and AI scores */
+    flex-grow: 1; /* Allows them to take up space */
+    /* text-align: left; for player, text-align: right; for AI if not already handled */
+}
+
+#scoreBoard #playerScoreDisplay {
+    text-align: left;
+}
+#scoreBoard #aiScoreDisplay {
+    text-align: right;
+}
+
+#statsContainer { /* New container for streak and W/L */
+    display: flex;
+    flex-direction: column; /* Stack streak above W/L */
+    align-items: center; /* Center them horizontally */
+    /* flex-grow: 2; /* Allow it to take more central space if needed */
+    padding: 0 10px; /* Some horizontal padding */
+    text-align: center;
+}
+
+.scoreboard-stat {
+    font-size: 0.8em; /* Slightly smaller than main scores */
+    color: #FFFFFF; /* Or your desired color */
+    text-shadow: 1px 1px #000000; /* Match other scoreboard text if needed */
+    margin: 2px 0; /* Small vertical margin */
+}
+
+.score-text {
+    font-size: 24px; /* Larger font for scores */
+    /* Individual styling if needed, but most is handled by #scoreBoard */
+    padding: 0 20px; /* Add some padding so text isn't at the very edge */
+    line-height: 1.3; /* Added to increase space between lines */
+}
+
 canvas {
-    display: block; /* Removes extra space below canvas if it's inline */
+    display: block;
+    background-color: #D2B48C; /* Moved from script.js render options for consistency */
+    border: 3px solid #333; /* Optional: border around canvas */
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Optional: shadow for depth */
 }
 
 #gameCanvas {
@@ -88,4 +168,74 @@ canvas {
     border: 10px solid black;
     border-radius: 15px;
     box-sizing: border-box; /* Important: includes border and padding in the element's total width and height */
+}
+
+#startMenu .name-input-container {
+    display: flex;
+    flex-direction: column; /* Stacks the label above the input field */
+    align-items: center;   /* Centers items horizontally within this flex container */
+    margin-top: 15px;      /* Adds some space above the name input area */
+    margin-bottom: 20px;   /* Adds some space below the name input area */
+}
+
+#startMenu .name-input-container label {
+    margin-bottom: 8px; /* Adds a small space between the label and the input field */
+    font-size: 0.9em;   /* Slightly smaller font for the label */
+}
+
+#playerNameInput {
+    padding: 10px;
+    border: 2px solid #555; /* A slightly darker border */
+    border-radius: 5px;
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    font-family: 'Press Start 2P', cursive; /* Match your game font */
+    font-size: 1em;
+    text-align: center; /* Centers the text typed into the input box */
+    width: 280px; /* Adjust width as needed, or use a percentage like 70% */
+    box-sizing: border-box; /* Ensures padding and border don't increase the total width */
+}
+
+#playerNameInput::placeholder {
+    color: #aaa; /* Lighter color for placeholder text */
+    opacity: 0.7;
+}
+
+/* Spin Move Gauge Styles */
+#spinGaugeContainer {
+    position: absolute;
+    top: 50%; /* Center vertically relative to gameContainer */
+    left: 20px; /* Position from the left edge of gameContainer */
+    transform: translateY(-50%);
+    width: 30px;
+    height: 200px; /* Height of the gauge */
+    background-color: #333; /* Dark background for the gauge */
+    border: 2px solid #FFF;
+    border-radius: 5px;
+    display: none; /* Hidden by default, shown by JS */
+    flex-direction: column; /* Stack fill and text vertically */
+    justify-content: flex-end; /* Fill starts from the bottom */
+    align-items: center;
+    z-index: 10;
+}
+
+#spinGaugeFill {
+    width: 100%;
+    height: 0%; /* Starts empty */
+    background-color: #00FF00; /* Green fill */
+    border-radius: 2px; /* Slightly rounded corners for the fill */
+    transition: height 0.2s ease-out, background-color 0.2s ease-out; /* Smooth transition for fill and color */
+}
+
+#spinGaugeText {
+    position: absolute; /* Position text over the gauge */
+    bottom: -55px; /* Moved down further from -35px */
+    left: 5px; /* Position start of text box relative to gauge container */
+    width: 100px; /* Make text box wider */
+    text-align: left; /* Align text to the left within the wider box */
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-shadow: 1px 1px #000000;
+    line-height: 1.3; /* Added to increase space between lines */
 }
