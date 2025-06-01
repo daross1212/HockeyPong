@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hockey Pong</title>
+    <title>Hockey Pong Deluxe</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
@@ -14,19 +14,40 @@
     </style>
 </head>
 <body>
-    <div id="startMenu">
-        <h1>Hockey Pong</h1>
-        <p>Select Control Mode:</p>
-        <button id="mouseModeButton">Mouse / Trackpad</button>
-        <button id="keyboardModeButton">Arrow Keys</button>
-    </div>
+    <div id="gameContainer">
+        <div id="startMenu">
+            <h1>Hockey Pong</h1>
+            <div class="name-input-container">
+                <label for="playerNameInput">Enter Your Name:</label>
+                <input type="text" id="playerNameInput" placeholder="Player">
+            </div>
+            <p>Select Control Mode:</p>
+            <button id="mouseModeButton">Mouse / Trackpad</button>
+            <button id="keyboardModeButton">Arrow Keys</button>
+        </div>
 
-    <div id="gameOverMenu" style="display: none;">
-        <h2 id="gameOverMessage">Game Over!</h2>
-        <button id="returnToMenuButton">Return to Main Menu</button>
-    </div>
+        <div id="spinGaugeContainer">
+            <div id="spinGaugeFill"></div>
+            <div id="spinGaugeText">SPIN</div>
+        </div>
 
-    <canvas id="gameCanvas"></canvas>
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="scoreBoard">
+            <div id="playerScoreDisplay" class="score-text">PLAYER: 0</div>
+            <div id="statsContainer"> <!-- Optional: A container for centering -->
+                <span id="streakDisplay" class="scoreboard-stat">STREAK: 0</span>
+                <span id="winLossDisplay" class="scoreboard-stat">W: 0 L: 0</span>
+            </div>
+            <div id="aiScoreDisplay" class="score-text">AI: 0</div>
+        </div>
+
+        <div id="gameOverMenu" style="display: none;">
+            <h2 id="gameOverMessage">Game Over!</h2>
+            <button id="returnToMenuButton">Return to Main Menu</button>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
